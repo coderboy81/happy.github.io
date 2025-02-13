@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feel Better Soon</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #a8e6cf, #dcedc1);
+            color: #333;
+            overflow: hidden;
+            padding: 20px;
+        }
+        #message {
+            font-size: 1.8em;
+            margin-top: 50px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            background: #77af9c;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #558b7f;
+        }
+        .emoji {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.8;
+            animation: floatSoft 6s infinite ease-in-out;
+        }
+        @keyframes floatSoft {
+            0% { transform: translateY(100vh); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-10vh); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🌿 Take It Easy, You’ll Feel Better Soon 🌿</h1>
+    <p id="message">Click the button for some comfort.</p>
+    <button onclick="sendComfort()">I Need Comfort</button>
+    
+    <audio id="softMusic" src="https://www.bensound.com/bensound-music/bensound-memories.mp3" loop></audio>
+
+    <script>
+        const comfortingMessages = [
+            "Rest well. Your body is healing. 🛌💙",
+            "Drink plenty of water and relax. 🍵💧",
+            "Take deep breaths, and be kind to yourself. 🌿💖",
+            "You are strong. This will pass. 🌙✨",
+            "One step at a time. Sending you warmth and love. 🤗💛"
+        ];
+
+        function sendComfort() {
+            document.getElementById("message").innerText = comfortingMessages[Math.floor(Math.random() * comfortingMessages.length)];
+            document.getElementById("softMusic").play();
+            generateSoftEmojis();
+        }
+
+        function generateSoftEmojis() {
+            const emojis = ["💙", "☁️", "🌿", "🍵", "✨", "💛", "🌙"];
+            for (let i = 0; i < 7; i++) {
+                let emoji = document.createElement("div");
+                emoji.classList.add("emoji");
+                emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+                emoji.style.left = Math.random() * 100 + "vw";
+                emoji.style.animationDuration = (Math.random() * 2 + 4) + "s";
+                document.body.appendChild(emoji);
+
+                setTimeout(() => {
+                    emoji.remove();
+                }, 6000);
+            }
+        }
+    </script>
+
+</body>
+</html>
